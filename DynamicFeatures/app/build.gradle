@@ -16,6 +16,7 @@
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 
@@ -46,13 +47,11 @@ android {
     }
 
     dynamicFeatures = [':features:kotlin',
-                       ':features:initialInstall',
                        ':features:java',
                        ':features:native',
                        ':features:assets',
                        ':instant:split',
-                       ':instant:url'
-    ]
+                       ':instant:url']
 }
 
 dependencies {
@@ -60,19 +59,21 @@ dependencies {
     // Libraries which can be re-used in other modules should use the `api` keyword.
     // This way they can be shared with dependent feature modules.
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
-    implementation 'androidx.annotation:annotation:1.0.2'
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    implementation 'androidx.annotation:annotation:1.1.0'
 
     api "androidx.appcompat:appcompat:${versions.appcompat}"
     api 'androidx.constraintlayout:constraintlayout:1.1.3'
     api 'com.google.android.material:material:1.0.0'
     api "com.google.android.play:core:${versions.playcore}"
 
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
+    androidTestImplementation "androidx.test:core:1.2.0"
     androidTestImplementation "androidx.test:rules:${versions.testRules}"
     androidTestImplementation "androidx.test:runner:${versions.testRunner}"
     androidTestImplementation "androidx.test.ext:junit:${versions.extJunit}"
 
     // When using API in base, some dependencies might have to be re-added for test implementation.
     androidTestImplementation "androidx.appcompat:appcompat:${versions.appcompat}"
+    androidTestImplementation "com.google.android.play:core:${versions.playcore}"
 }

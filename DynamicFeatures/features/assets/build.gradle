@@ -23,10 +23,13 @@ android {
     defaultConfig {
         minSdkVersion versions.minSdk
         targetSdkVersion versions.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 }
 
 dependencies {
 
     implementation project(':app')
+    androidTestImplementation "com.google.android.play:core:${versions.playcore}"
 }

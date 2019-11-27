@@ -16,6 +16,7 @@
 
 apply plugin: 'com.android.dynamic-feature'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 
@@ -40,5 +41,6 @@ dependencies {
     androidTestImplementation "androidx.appcompat:appcompat:${versions.appcompat}"
 
     androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+    androidTestImplementation "com.google.android.play:core:${versions.playcore}"
 
 }
