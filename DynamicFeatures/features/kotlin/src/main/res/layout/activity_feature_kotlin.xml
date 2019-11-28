@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="8dp"
+        android:tag="@string/module_feature_kotlin"
         android:text="@string/content_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -49,7 +49,7 @@ dependencies {
 
     implementation project(':app')
 
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
     androidTestImplementation "androidx.test:rules:${versions.testRules}"
     androidTestImplementation "androidx.test.ext:junit:${versions.extJunit}"
 

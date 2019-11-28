@@ -16,7 +16,6 @@
 
 apply plugin: 'com.android.dynamic-feature'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
 
@@ -33,7 +32,7 @@ dependencies {
 
     implementation project(':app')
 
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:${versions.espresso}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
     androidTestImplementation "androidx.test:rules:${versions.testRules}"
     androidTestImplementation "androidx.test.ext:junit:${versions.extJunit}"
 
