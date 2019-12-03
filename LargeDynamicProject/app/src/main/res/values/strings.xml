@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Large Dynamic Project</string>
+    <string name="title_featurea">Feature A</string>
+    <string name="title_featureb">Feature B</string>
+</resources>

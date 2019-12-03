@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+apply from: '../common.gradle'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    defaultConfig {
+        applicationId "com.devrel.experiment.large.dynamic.app"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dynamicFeatures = [
+            ":featureA:baseA",
+            ":featureB:baseB",
+    ]
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(":common:commonA")
+    implementation project(":common:commonB")
+    implementation project(":common:commonC")
+    implementation project(":common:commonD")
+    implementation project(":common:commonE")
+    implementation project(":common:commonF")
+    implementation project(":common:commonG")
+    implementation project(":common:commonH")
+}

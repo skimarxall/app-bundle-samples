@@ -1,0 +1,91 @@
+/*
+ * Copyright 2019 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+task createExplorer {
+    doLast {
+        char index = 'a'
+        for (int i = 1; i <= 12; i++) {
+            def featureName = "dep${index.toUpperCase()}"
+            def featurePackageDir = "featureB/$featureName/src/main/java/com/devrel/experiment/large/dynamic/feature/dep/$index"
+
+            delete("featureB/$featureName/src/main/java/com/devrel/experiment/large/dynamic/feature/dep/$index/Activity0.java")
+            delete("featureB/$featureName/src/main/java/com/devrel/experiment/large/dynamic/feature/dep/$index/Activity1.java")
+            delete("featureB/$featureName/AndroidManifest.xml")
+
+            copy {
+                from "AndroidManifest.xml"
+                into "featureB/$featureName/src/main"
+            }
+
+            copy {
+                from "Fragment0.kt"
+                into featurePackageDir
+            }
+            copy {
+                from "Fragment1.kt"
+                into featurePackageDir
+            }
+
+            updatePackage(index, featureName)
+/*
+            println("Creating new Dynamic Feature $featureName...\n\n")
+            println(">> Package dir: $featurePackageDir")
+
+            copy {
+                from "featureA/depA"
+                into "common/$featureName"
+            }
+
+            def tempSourceDir = "common/$featureName/src/main/java/com/devrel/experiment/large/dynamic/feature/dep/a"
+            mkdir(featurePackageDir)
+            copy {
+                from tempSourceDir
+                into featurePackageDir
+            }
+            delete(tempSourceDir)
+
+            updatePackage(index, featureName)
+            registerModule(featureName)
+
+            println("\n\n...Feature created!\n\n")
+            println("Sync and build project")*/
+
+            index += 1
+        }
+    }
+}
+
+private void updatePackage(char index, featureName) {
+    ant.replaceregexp(
+            match: 'com.devrel.experiment.large.dynamic.feature.dep.a',
+            replace: "com.devrel.experiment.large.dynamic.feature.dep.$index",
+            flags: 'g',
+            byline: true
+    ) {
+        fileset(dir: "featureB/$featureName/src/main", includes: "**/*")
+    }
+}
+
+private void registerModule(featureName) {
+    ant.replaceregexp(
+            match: ' // FeatureA DF',
+            replace: ",\n        ':common:$featureName' // FeatureA DF",
+            flags: 'g',
+            byline: true
+    ) {
+        fileset(dir: ".", includes: 'settings.gradle')
+    }
+}

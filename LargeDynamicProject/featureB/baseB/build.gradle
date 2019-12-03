@@ -1,0 +1,38 @@
+apply plugin: 'com.android.dynamic-feature'
+
+apply from: '../../common.gradle'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':app')
+
+    implementation project(":common:commonA")
+
+    implementation project(':featureB:depA')
+    implementation project(':featureB:depB')
+    implementation project(':featureB:depC')
+    implementation project(':featureB:depD')
+    implementation project(':featureB:depE')
+    implementation project(':featureB:depF')
+    implementation project(':featureB:depG')
+    implementation project(':featureB:depH')
+    implementation project(':featureB:depI')
+    implementation project(':featureB:depJ')
+    implementation project(':featureB:depK')
+    implementation project(':featureB:depL')
+}

@@ -1,0 +1,43 @@
+include ':app'
+
+include ':common:commonA',
+        ':common:commonB',
+        ':common:commonC',
+        ':common:commonD',
+        ':common:commonE',
+        ':common:commonF',
+        ':common:commonG',
+        ':common:commonH',
+        ':common:commonI',
+        ':common:commonJ',
+        ':common:commonK'
+
+include ':featureA:baseA',
+        ':featureA:depA',
+        ':featureA:depB',
+        ':featureA:depC',
+        ':featureA:depD',
+        ':featureA:depE',
+        ':featureA:depF',
+        ':featureA:depG',
+        ':featureA:depH',
+        ':featureA:depI',
+        ':featureA:depJ',
+        ':featureA:depK',
+        ':featureA:depL'
+
+include ':featureB:baseB',
+        ':featureB:depA',
+        ':featureB:depB',
+        ':featureB:depC',
+        ':featureB:depD',
+        ':featureB:depE',
+        ':featureB:depF',
+        ':featureB:depG',
+        ':featureB:depH',
+        ':featureB:depI',
+        ':featureB:depJ',
+        ':featureB:depK',
+        ':featureB:depL'
+
+rootProject.name = 'Large Dynamic Project'
