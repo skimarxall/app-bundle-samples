@@ -21,6 +21,18 @@ android {
     dynamicFeatures = [
             ":featureA:baseA",
             ":featureB:baseB",
+            ":featureC:baseC",
+            ":featureD:baseD",
+            ":featureE:baseE",
+            ":featureF:baseF",
+            ":featureG:baseG",
+            ":featureH:baseH",
+            ":featureI:baseI",
+            ":featureJ:baseJ",
+            ":featureK:baseK",
+            ":featureL:baseL",
+            ":featureM:baseM",
+            ":featureN:baseN",
     ]
 }
 

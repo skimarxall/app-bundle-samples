@@ -16,31 +16,11 @@
 
 task createExplorer {
     doLast {
-        char index = 'a'
-        for (int i = 1; i <= 12; i++) {
-            def featureName = "dep${index.toUpperCase()}"
-            def featurePackageDir = "featureB/$featureName/src/main/java/com/devrel/experiment/large/dynamic/feature/dep/$index"
+        char index = 'l'
+        for (int i = 1; i < 25; i++) {
+            def featureName = "common${index.toUpperCase()}"
+            def featurePackageDir = "common/$featureName/src/main/java/com/devrel/experiment/large/dynamic/feature/common/$index"
 
-            delete("featureB/$featureName/src/main/java/com/devrel/experiment/large/dynamic/feature/dep/$index/Activity0.java")
-            delete("featureB/$featureName/src/main/java/com/devrel/experiment/large/dynamic/feature/dep/$index/Activity1.java")
-            delete("featureB/$featureName/AndroidManifest.xml")
-
-            copy {
-                from "AndroidManifest.xml"
-                into "featureB/$featureName/src/main"
-            }
-
-            copy {
-                from "Fragment0.kt"
-                into featurePackageDir
-            }
-            copy {
-                from "Fragment1.kt"
-                into featurePackageDir
-            }
-
-            updatePackage(index, featureName)
-/*
             println("Creating new Dynamic Feature $featureName...\n\n")
             println(">> Package dir: $featurePackageDir")
 
@@ -61,7 +41,7 @@ task createExplorer {
             registerModule(featureName)
 
             println("\n\n...Feature created!\n\n")
-            println("Sync and build project")*/
+            println("Sync and build project")
 
             index += 1
         }
@@ -71,11 +51,11 @@ task createExplorer {
 private void updatePackage(char index, featureName) {
     ant.replaceregexp(
             match: 'com.devrel.experiment.large.dynamic.feature.dep.a',
-            replace: "com.devrel.experiment.large.dynamic.feature.dep.$index",
+            replace: "com.devrel.experiment.large.dynamic.feature.common.$index",
             flags: 'g',
             byline: true
     ) {
-        fileset(dir: "featureB/$featureName/src/main", includes: "**/*")
+        fileset(dir: "common/$featureName/src/main", includes: "**/*")
     }
 }
 
