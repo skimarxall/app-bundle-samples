@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+
+apply from: '../../common.gradle'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation project(":common:commonAB")
+    implementation project(":common:commonAC")
+    implementation project(":common:commonAD")
+    implementation project(":common:commonAE")
+    implementation project(":common:commonAF")
+    implementation project(":common:commonAG")
+    implementation project(":common:commonAH")
+}

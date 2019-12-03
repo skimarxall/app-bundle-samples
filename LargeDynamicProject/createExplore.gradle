@@ -16,56 +16,37 @@
 
 task createExplorer {
     doLast {
-        char index = 'l'
-        for (int i = 1; i < 25; i++) {
-            def featureName = "common${index.toUpperCase()}"
-            def featurePackageDir = "common/$featureName/src/main/java/com/devrel/experiment/large/dynamic/feature/common/$index"
+        char featureIndex = 'a'
+        for (int j = 1; j <= 14; j++) {
+            for (int n = 0; n <= 7; n++) {
+                char index = 'a'
+                for (int i = 1; i <= 12; i++) {
+                    def featureName = "feature${featureIndex.toUpperCase()}"
+                    def featureDep = "dep${index.toUpperCase()}"
+                    def packageDir = "$featureName/$featureDep/src/main/res/drawable/"
 
-            println("Creating new Dynamic Feature $featureName...\n\n")
-            println(">> Package dir: $featurePackageDir")
+                    copy {
+                        from "$packageDir/"
+                        into "$packageDir/"
+                        include "androidappmodule0image${n}.png"
+                        rename("androidappmodule0image${n}.png", "image_${featureName.toLowerCase()}_${featureDep.toLowerCase()}_${n}.png")
+                    }
 
-            copy {
-                from "featureA/depA"
-                into "common/$featureName"
+                    delete("$packageDir/androidappmodule0image${n}.png")
+
+                    ant.replaceregexp(
+                            match: "androidappmodule0image${n}",
+                            replace: "image_${featureName.toLowerCase()}_${featureDep.toLowerCase()}_${n}",
+                            flags: 'g',
+                            byline: true
+                    ) {
+                        fileset(dir: "$featureName/$featureDep/src/main", includes: "**/*")
+                    }
+
+                    index += 1
+                }
             }
-
-            def tempSourceDir = "common/$featureName/src/main/java/com/devrel/experiment/large/dynamic/feature/dep/a"
-            mkdir(featurePackageDir)
-            copy {
-                from tempSourceDir
-                into featurePackageDir
-            }
-            delete(tempSourceDir)
-
-            updatePackage(index, featureName)
-            registerModule(featureName)
-
-            println("\n\n...Feature created!\n\n")
-            println("Sync and build project")
-
-            index += 1
+            featureIndex += 1
         }
-    }
-}
-
-private void updatePackage(char index, featureName) {
-    ant.replaceregexp(
-            match: 'com.devrel.experiment.large.dynamic.feature.dep.a',
-            replace: "com.devrel.experiment.large.dynamic.feature.common.$index",
-            flags: 'g',
-            byline: true
-    ) {
-        fileset(dir: "common/$featureName/src/main", includes: "**/*")
-    }
-}
-
-private void registerModule(featureName) {
-    ant.replaceregexp(
-            match: ' // FeatureA DF',
-            replace: ",\n        ':common:$featureName' // FeatureA DF",
-            flags: 'g',
-            byline: true
-    ) {
-        fileset(dir: ".", includes: 'settings.gradle')
     }
 }

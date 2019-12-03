@@ -18,7 +18,7 @@ class Fragment0 : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Foo0().foo4()
+        Foo40().foo4()
     }
 
 }

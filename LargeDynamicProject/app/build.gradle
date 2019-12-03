@@ -47,4 +47,12 @@ dependencies {
     implementation project(":common:commonF")
     implementation project(":common:commonG")
     implementation project(":common:commonH")
+
+    implementation project(":common:commonAI")
+    implementation project(":common:commonAJ")
+    implementation project(":common:commonAK")
+    implementation project(":common:commonAL")
+    implementation project(":common:commonAM")
+    implementation project(":common:commonAN")
+    implementation project(":common:commonAO")
 }

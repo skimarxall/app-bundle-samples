@@ -3,7 +3,7 @@ package com.devrel.experiment.large.dynamic.feature.a;
 import android.widget.ImageView;
 
 public class Activity1 extends android.app.Activity {
-    ImageView imageView0;
+
 
     ImageView imageView1;
 
@@ -20,7 +20,7 @@ public class Activity1 extends android.app.Activity {
     @Override
     public void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new Foo0().foo4();
-        setContentView(R.layout.androidappmodule0activity_main1);
+        new Foo40().foo4();
+        setContentView(R.layout.feature_a_base_a_2);
     }
 }

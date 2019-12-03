@@ -1,14 +1,12 @@
 package com.devrel.experiment.large.dynamic.feature.common.a;
 
-import android.widget.ImageView;
 
 public class Activity0 extends android.app.Activity {
-    ImageView imageView0;
 
     @Override
     public void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new Foo0().foo4();
-        setContentView(R.layout.androidappmodule0activity_main0);
+        new Foo3999().foo4();
+        setContentView(R.layout.common_common_a_1);
     }
 }
