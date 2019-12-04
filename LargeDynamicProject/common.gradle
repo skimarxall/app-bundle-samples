@@ -54,13 +54,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
-/*
-tasks.whenTaskAdded {
-    Task task = it as Task
-    task.project.plugins.forEach {
-        if (it.toString().contains("com.android.build.gradle.DynamicFeaturePlugin")) {
-            task.enabled = !(dynamicSelectionEnabled && !includeDynamicFeatures.contains(task.project.name))
-            return
+Properties properties = new Properties()
+properties.load(rootDir.listFiles().find { it.name == 'local.properties' }.newDataInputStream())
+int option = properties.getProperty('android.dynamic.experiment.option')?.toInteger() ?: 0
+
+if (option == 2) {
+
+    tasks.whenTaskAdded {
+        Task task = it as Task
+        def name = task.toString()
+        if (name.contains("feature")) {
+            task.enabled = name.contains("featureB")
         }
     }
-}*/
+}
